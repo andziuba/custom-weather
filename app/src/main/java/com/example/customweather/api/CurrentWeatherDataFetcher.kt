@@ -1,15 +1,13 @@
-package com.example.customweather.repository
+package com.example.customweather.api
 
+import android.util.Log
 import com.example.customweather.Config
-import com.example.customweather.api.ApiService
 import com.example.customweather.api.data.WeatherData
-import com.example.customweather.api.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class CurrentWeatherDataFetcher {
-
     private val openWeatherApiService: ApiService = RetrofitInstance.openWeatherRetrofit.create(ApiService::class.java)
     private val weatherApiService: ApiService = RetrofitInstance.weatherApiRetrofit.create(ApiService::class.java)
     private val weatherBitApiService: ApiService = RetrofitInstance.weatherBitRetrofit.create(ApiService::class.java)
@@ -45,7 +43,8 @@ class CurrentWeatherDataFetcher {
             }
 
             // Tomorrow.io
-            val tomorrowIoResponse = tomorrowIoApiService.getTomorrowIo(location, Config.TOMORROWIO_API_KEY)
+            val tomorrowIoResponse = tomorrowIoApiService.getTomorrowIo(
+                location, "temperature,temperatureApparent,uvIndex", "1h", "metric", Config.TOMORROWIO_API_KEY)
             if (tomorrowIoResponse.isSuccessful) {
                 tomorrowIoResponse.body()?.let {
                     weatherDataList.add(it)
@@ -55,21 +54,23 @@ class CurrentWeatherDataFetcher {
             // AccuWeather
             val accuWeatherLocationResponse = accuWeatherApiService.getAccuWeatherLocationKey(Config.ACCUWEATHER_API_KEY, location)
             if (accuWeatherLocationResponse.isSuccessful) {
-                val locationKey = accuWeatherLocationResponse.body()?.firstOrNull()?.key
-                if (locationKey != null) {
+                val locations = accuWeatherLocationResponse.body()
+                if (locations != null && locations.isNotEmpty()) {
+                    val locationKey = locations[0].Key
                     val accuWeatherResponse = accuWeatherApiService.getAccuWeather(
                         locationKey,
                         Config.ACCUWEATHER_API_KEY,
                         language = "en-us"
                     )
+
                     if (accuWeatherResponse.isSuccessful) {
-                        accuWeatherResponse.body()?.let {
-                            weatherDataList.add(it)
+                        val accuWeatherDataList = accuWeatherResponse.body()
+                        if (accuWeatherDataList != null && accuWeatherDataList.isNotEmpty()) {
+                            weatherDataList.addAll(accuWeatherDataList)
                         }
                     }
                 }
             }
-
         } catch (e: HttpException) {
             e.printStackTrace()
         } catch (e: Exception) {
