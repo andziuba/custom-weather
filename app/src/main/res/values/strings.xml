@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Custom Weather</string>
+    <string name="temp_format">%.1f °C</string>
+    <string name="uv_index_format">%.0f</string>
 </resources>
