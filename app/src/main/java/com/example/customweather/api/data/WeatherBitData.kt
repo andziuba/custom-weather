@@ -3,7 +3,7 @@ package com.example.customweather.api.data
 data class WeatherBitData(
     val data: List<Data>
 ) : WeatherData {
-    override val temperature: Double
+    override val currentTemperature: Double
         get() = data[0].temp
 
     override val feelsLikeCurrentTemperature: Double

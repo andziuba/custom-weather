@@ -1,24 +1,30 @@
 package com.example.customweather.api.data
 
 data class AccuWeatherData(
-    val temp: Temp,
-    val uv: Int? = null
+    val Temperature: Temperature,
+    val RealFeelTemperatureShade: RealFeelTemperatureShade,
+    val UVIndex: Int
 ) : WeatherData {
-    override val temperature: Double
-        get() = temp.metric.value
+    override val currentTemperature: Double
+        get() = Temperature.Metric.Value
 
     override val feelsLikeCurrentTemperature: Double
-        get() = temp.metric.feels_like
+        get() = RealFeelTemperatureShade.Metric.Value
 
-    override val uvIndex: Double?
-        get() = uv?.toDouble()
+    override val uvIndex: Double
+        get() = UVIndex.toDouble()
 }
 
-data class Temp(
-    val metric: Metric
+data class Metric(
+    val Value: Double
 )
 
-data class Metric(
-    val value: Double,
-    val feels_like: Double
+data class Temperature(
+    val Metric: Metric
 )
+
+data class RealFeelTemperatureShade(
+    val Metric: Metric
+)
+
+

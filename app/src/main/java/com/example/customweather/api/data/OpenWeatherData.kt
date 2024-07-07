@@ -4,7 +4,7 @@ data class OpenWeatherData(
     val main: Main,
     val uv: Double? = null // not provided
 ) : WeatherData {
-    override val temperature: Double
+    override val currentTemperature: Double
         get() = main.temp
 
     override val feelsLikeCurrentTemperature: Double
