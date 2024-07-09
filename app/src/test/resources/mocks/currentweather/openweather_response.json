@@ -1,0 +1,43 @@
+{
+  "coord": {
+    "lon": 16.92,
+    "lat": 52.4
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 23,
+    "feels_like": 22.6,
+    "temp_min": 23,
+    "temp_max": 23,
+    "pressure": 1016,
+    "humidity": 46
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 3.1,
+    "deg": 300
+  },
+  "clouds": {
+    "all": 0
+  },
+  "dt": 1661870592,
+  "sys": {
+    "type": 1,
+    "id": 1701,
+    "country": "PL",
+    "sunrise": 1661812754,
+    "sunset": 1661870336
+  },
+  "timezone": 7200,
+  "id": 3088171,
+  "name": "Poznań",
+  "cod": 200
+}

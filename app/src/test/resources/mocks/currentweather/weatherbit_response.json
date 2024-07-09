@@ -1,0 +1,48 @@
+{
+  "data":[
+    {
+      "wind_cdir":"SW",
+      "rh":60,
+      "pod":"d",
+      "lon":16.9252,
+      "pres":1015.6,
+      "timezone":"Europe/Warsaw",
+      "ob_time":"2023-07-07 16:45",
+      "country_code":"PL",
+      "clouds":50,
+      "vis":10,
+      "wind_spd":5.50,
+      "gust": 7,
+      "wind_cdir_full":"southwest",
+      "app_temp":23.0,
+      "state_code":"30",
+      "ts":1688723100,
+      "h_angle":0,
+      "dewpt":14.0,
+      "weather":{
+        "icon":"c02d",
+        "code":802,
+        "description":"Scattered clouds"
+      },
+      "uv":3,
+      "aqi":35,
+      "station":"POZN1",
+      "sources": ["rtma", "POZN1"],
+      "wind_dir":225,
+      "elev_angle":63,
+      "datetime":"2023-07-07:16",
+      "precip":0,
+      "ghi":420.0,
+      "dni":480,
+      "dhi":110,
+      "solar_rad":330,
+      "city_name":"Poznań",
+      "sunrise":"04:45",
+      "sunset":"21:15",
+      "temp":23.0,
+      "lat":52.4064,
+      "slp":1018.2
+    }
+  ],
+  "count":1
+}
