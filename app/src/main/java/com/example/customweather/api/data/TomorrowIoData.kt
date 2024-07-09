@@ -10,7 +10,7 @@ data class TomorrowIoData(
         get() = data.timelines[0].intervals[0].values.temperatureApparent
 
     override val uvIndex: Double
-        get() = data.timelines[0].intervals[0].values.uv
+        get() = data.timelines[0].intervals[0].values.uvIndex.toDouble()
 }
 
 data class Timelines(
@@ -28,5 +28,5 @@ data class Interval(
 data class Values(
     val temperature: Double,
     val temperatureApparent: Double,
-    val uv: Double
+    val uvIndex: Int
 )

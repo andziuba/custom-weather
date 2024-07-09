@@ -23,6 +23,7 @@ class CurrentWeatherDataFetcher {
             if (openWeatherResponse.isSuccessful) {
                 openWeatherResponse.body()?.let {
                     weatherDataList.add(it)
+                    Log.d("WeatherDataFetcher", "OpenWeather: ${it.currentTemperature}")
                 }
             }
 
@@ -31,6 +32,7 @@ class CurrentWeatherDataFetcher {
             if (weatherApiResponse.isSuccessful) {
                 weatherApiResponse.body()?.let {
                     weatherDataList.add(it)
+                    Log.d("WeatherDataFetcher", "WeatherAPI: ${it.currentTemperature}, ${it.uvIndex}")
                 }
             }
 
@@ -39,6 +41,7 @@ class CurrentWeatherDataFetcher {
             if (weatherBitResponse.isSuccessful) {
                 weatherBitResponse.body()?.let {
                     weatherDataList.add(it)
+                    Log.d("WeatherDataFetcher", "WeatherBit: ${it.currentTemperature}, ${it.uvIndex}")
                 }
             }
 
@@ -48,6 +51,7 @@ class CurrentWeatherDataFetcher {
             if (tomorrowIoResponse.isSuccessful) {
                 tomorrowIoResponse.body()?.let {
                     weatherDataList.add(it)
+                    Log.d("WeatherDataFetcher", "Tomorrow.io: ${it.currentTemperature}, ${it.uvIndex}")
                 }
             }
 
@@ -67,6 +71,7 @@ class CurrentWeatherDataFetcher {
                         val accuWeatherDataList = accuWeatherResponse.body()
                         if (accuWeatherDataList != null && accuWeatherDataList.isNotEmpty()) {
                             weatherDataList.addAll(accuWeatherDataList)
+                            Log.d("WeatherDataFetcher", "AccuWeather Temp: ${accuWeatherDataList[0].currentTemperature}, ${accuWeatherDataList[0].uvIndex}, Location Key: $locationKey")
                         }
                     }
                 }
